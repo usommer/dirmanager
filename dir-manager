@@ -1,0 +1,10 @@
+#### dir-manager
+## remember current dir
+alias p="pwd >> ~/.dirs; cat -n ~/.dirs "
+## list remembered dirs
+alias ld="cat -n ~/.dirs"
+## cd or del remembered dirs (ex. cd4 or del3)
+for b in $(seq 1 20); do
+	alias cd$b="cd $(awk '{ if (NR==n) print $0 }' n=$b ~/.dirs)"
+	alias del$b="sed -i '$b d' ~/.dirs; cat -n  ~/.dirs"
+done
